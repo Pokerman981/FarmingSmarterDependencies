@@ -101,6 +101,7 @@
     "typescript": "~2.2.0",
     "zone.js": "^0.8.4"
   },
+  "es2015_ivy_ngcc": "__ivy_ngcc__/ngx-cookie-service.js",
   "es2015": "ngx-cookie-service.js",
   "homepage": "https://github.com/7leads/ngx-cookie-service#readme",
   "keywords": [
@@ -147,8 +148,13 @@
     "ng": "ng",
     "publish:dist": "npm run compile && npm publish dist-lib",
     "start": "npm run compile && ng serve",
-    "test": "npm run compile && ng test"
+    "test": "npm run compile && ng test",
+    "prepublishOnly": "node --eval \"console.error('ERROR: Trying to publish a package that has been compiled by NGCC. This is not allowed.\\nPlease delete and rebuild the package, without compiling with NGCC, before attempting to publish.\\nNote that NGCC may have been run by importing this package into another project that is being built with Ivy enabled.\\n')\" && exit 1"
   },
   "typings": "ngx-cookie-service.d.ts",
-  "version": "2.3.0"
+  "version": "2.3.0",
+  "__processed_by_ivy_ngcc__": {
+    "es2015": "9.0.2",
+    "typings": "9.0.2"
+  }
 }

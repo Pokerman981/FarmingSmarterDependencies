@@ -1,6 +1,6 @@
 /**
- * @license Angular v8.2.14
- * (c) 2010-2019 Google LLC. https://angular.io/
+ * @license Angular v9.0.2
+ * (c) 2010-2020 Google LLC. https://angular.io/
  * License: MIT
  */
 
@@ -11,6 +11,7 @@ import { map, filter, switchMap, publish, take, tap, delay } from 'rxjs/operator
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: packages/service-worker/src/low_level.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
@@ -249,6 +250,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: packages/service-worker/src/push.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
@@ -492,6 +494,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: packages/service-worker/src/update.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
@@ -570,6 +573,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: packages/service-worker/src/module.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
@@ -754,16 +758,19 @@ ServiceWorkerModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: packages/service-worker/src/index.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: packages/service-worker/public_api.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: packages/service-worker/index.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
@@ -771,5 +778,5 @@ ServiceWorkerModule.decorators = [
  * Generated bundle index. Do not edit.
  */
 
-export { NgswCommChannel as ɵangular_packages_service_worker_service_worker_a, SCRIPT as ɵangular_packages_service_worker_service_worker_b, ngswAppInitializer as ɵangular_packages_service_worker_service_worker_c, ngswCommChannelFactory as ɵangular_packages_service_worker_service_worker_d, ServiceWorkerModule, SwRegistrationOptions, SwPush, SwUpdate };
+export { ServiceWorkerModule, SwPush, SwRegistrationOptions, SwUpdate, NgswCommChannel as ɵangular_packages_service_worker_service_worker_a, SCRIPT as ɵangular_packages_service_worker_service_worker_b, ngswAppInitializer as ɵangular_packages_service_worker_service_worker_c, ngswCommChannelFactory as ɵangular_packages_service_worker_service_worker_d };
 //# sourceMappingURL=service-worker.js.map

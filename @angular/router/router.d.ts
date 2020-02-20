@@ -1,6 +1,6 @@
 /**
- * @license Angular v8.2.14
- * (c) 2010-2019 Google LLC. https://angular.io/
+ * @license Angular v9.0.2
+ * (c) 2010-2020 Google LLC. https://angular.io/
  * License: MIT
  */
 
@@ -46,6 +46,7 @@ import { ViewportScroller } from '@angular/common';
  *
  * @publicApi
  */
+import * as ɵngcc0 from '@angular/core';
 export declare class ActivatedRoute {
     /** An observable of the URL segments matched by this route. */
     url: Observable<UrlSegment[]>;
@@ -64,26 +65,26 @@ export declare class ActivatedRoute {
     /** The current snapshot of this route */
     snapshot: ActivatedRouteSnapshot;
     /** The configuration used to match this route. */
-    readonly routeConfig: Route | null;
+    get routeConfig(): Route | null;
     /** The root of the router state. */
-    readonly root: ActivatedRoute;
+    get root(): ActivatedRoute;
     /** The parent of this route in the router state tree. */
-    readonly parent: ActivatedRoute | null;
+    get parent(): ActivatedRoute | null;
     /** The first child of this route in the router state tree. */
-    readonly firstChild: ActivatedRoute | null;
+    get firstChild(): ActivatedRoute | null;
     /** The children of this route in the router state tree. */
-    readonly children: ActivatedRoute[];
+    get children(): ActivatedRoute[];
     /** The path from the root of the router state tree to this route. */
-    readonly pathFromRoot: ActivatedRoute[];
+    get pathFromRoot(): ActivatedRoute[];
     /** An Observable that contains a map of the required and optional parameters
      * specific to the route.
      * The map supports retrieving single and multiple values from the same parameter. */
-    readonly paramMap: Observable<ParamMap>;
+    get paramMap(): Observable<ParamMap>;
     /**
      * An Observable that contains a map of the query parameters available to all routes.
      * The map supports retrieving single and multiple values from the query parameter.
      */
-    readonly queryParamMap: Observable<ParamMap>;
+    get queryParamMap(): Observable<ParamMap>;
     toString(): string;
 }
 
@@ -125,17 +126,17 @@ export declare class ActivatedRouteSnapshot {
     /** The configuration used to match this route **/
     readonly routeConfig: Route | null;
     /** The root of the router state */
-    readonly root: ActivatedRouteSnapshot;
+    get root(): ActivatedRouteSnapshot;
     /** The parent of this route in the router state tree */
-    readonly parent: ActivatedRouteSnapshot | null;
+    get parent(): ActivatedRouteSnapshot | null;
     /** The first child of this route in the router state tree */
-    readonly firstChild: ActivatedRouteSnapshot | null;
+    get firstChild(): ActivatedRouteSnapshot | null;
     /** The children of this route in the router state tree */
-    readonly children: ActivatedRouteSnapshot[];
+    get children(): ActivatedRouteSnapshot[];
     /** The path from the root of the router state tree to this route */
-    readonly pathFromRoot: ActivatedRouteSnapshot[];
-    readonly paramMap: ParamMap;
-    readonly queryParamMap: ParamMap;
+    get pathFromRoot(): ActivatedRouteSnapshot[];
+    get paramMap(): ParamMap;
+    get queryParamMap(): ParamMap;
     toString(): string;
 }
 
@@ -1920,7 +1921,7 @@ export declare class Router {
      */
     setUpLocationChangeListener(): void;
     /** The current URL. */
-    readonly url: string;
+    get url(): string;
     /** The current Navigation object if one exists */
     getCurrentNavigation(): Navigation | null;
     /**
@@ -1951,7 +1952,8 @@ export declare class Router {
      * Otherwise, applies the given command starting from the root.
      *
      * @param commands An array of commands to apply.
-     * @param navigationExtras Options that control the navigation strategy.
+     * @param navigationExtras Options that control the navigation strategy. This function
+     * only utilizes properties in `NavigationExtras` that would change the provided URL.
      * @returns The new URL tree.
      *
      * @usageNotes
@@ -2051,6 +2053,8 @@ export declare class Router {
     private setBrowserUrl;
     private resetStateAndUrl;
     private resetUrlToCurrentUrlTree;
+    static ɵfac: ɵngcc0.ɵɵFactoryDef<Router>;
+    static ɵdir: ɵngcc0.ɵɵDirectiveDefWithMeta<Router, never, never, {}, {}, never>;
 }
 
 /**
@@ -2236,13 +2240,25 @@ export declare class RouterLink {
     private commands;
     private preserve;
     constructor(router: Router, route: ActivatedRoute, tabIndex: string, renderer: Renderer2, el: ElementRef);
-    routerLink: any[] | string;
+    set routerLink(commands: any[] | string);
     /**
      * @deprecated 4.0.0 use `queryParamsHandling` instead.
      */
-    preserveQueryParams: boolean;
+    set preserveQueryParams(value: boolean);
     onClick(): boolean;
-    readonly urlTree: UrlTree;
+    get urlTree(): UrlTree;
+    static ɵfac: ɵngcc0.ɵɵFactoryDef<RouterLink>;
+    static ɵdir: ɵngcc0.ɵɵDirectiveDefWithMeta<RouterLink, ":not(a):not(area)[routerLink]", never, {
+    "routerLink": "routerLink";
+    "preserveQueryParams": "preserveQueryParams";
+    "queryParams": "queryParams";
+    "fragment": "fragment";
+    "queryParamsHandling": "queryParamsHandling";
+    "preserveFragment": "preserveFragment";
+    "skipLocationChange": "skipLocationChange";
+    "replaceUrl": "replaceUrl";
+    "state": "state";
+}, {}, never>;
 }
 
 /**
@@ -2318,12 +2334,17 @@ export declare class RouterLinkActive implements OnChanges, OnDestroy, AfterCont
     };
     constructor(router: Router, element: ElementRef, renderer: Renderer2, link?: RouterLink | undefined, linkWithHref?: RouterLinkWithHref | undefined);
     ngAfterContentInit(): void;
-    routerLinkActive: string[] | string;
+    set routerLinkActive(data: string[] | string);
     ngOnChanges(changes: SimpleChanges): void;
     ngOnDestroy(): void;
     private update;
     private isLinkActive;
     private hasActiveLinks;
+    static ɵfac: ɵngcc0.ɵɵFactoryDef<RouterLinkActive>;
+    static ɵdir: ɵngcc0.ɵɵDirectiveDefWithMeta<RouterLinkActive, "[routerLinkActive]", ["routerLinkActive"], {
+    "routerLinkActiveOptions": "routerLinkActiveOptions";
+    "routerLinkActive": "routerLinkActive";
+}, {}, ["links", "linksWithHrefs"]>;
 }
 
 /**
@@ -2358,13 +2379,26 @@ export declare class RouterLinkWithHref implements OnChanges, OnDestroy {
     private preserve;
     href: string;
     constructor(router: Router, route: ActivatedRoute, locationStrategy: LocationStrategy);
-    routerLink: any[] | string;
-    preserveQueryParams: boolean;
+    set routerLink(commands: any[] | string);
+    set preserveQueryParams(value: boolean);
     ngOnChanges(changes: {}): any;
     ngOnDestroy(): any;
     onClick(button: number, ctrlKey: boolean, metaKey: boolean, shiftKey: boolean): boolean;
     private updateTargetUrlAndHref;
-    readonly urlTree: UrlTree;
+    get urlTree(): UrlTree;
+    static ɵfac: ɵngcc0.ɵɵFactoryDef<RouterLinkWithHref>;
+    static ɵdir: ɵngcc0.ɵɵDirectiveDefWithMeta<RouterLinkWithHref, "a[routerLink],area[routerLink]", never, {
+    "routerLink": "routerLink";
+    "preserveQueryParams": "preserveQueryParams";
+    "target": "target";
+    "queryParams": "queryParams";
+    "fragment": "fragment";
+    "queryParamsHandling": "queryParamsHandling";
+    "preserveFragment": "preserveFragment";
+    "skipLocationChange": "skipLocationChange";
+    "replaceUrl": "replaceUrl";
+    "state": "state";
+}, {}, never>;
 }
 
 /**
@@ -2433,6 +2467,8 @@ export declare class RouterModule {
      * Creates a module with all the router directives and a provider registering routes.
      */
     static forChild(routes: Routes): ModuleWithProviders<RouterModule>;
+    static ɵmod: ɵngcc0.ɵɵNgModuleDefWithMeta<RouterModule, [typeof RouterOutlet, typeof RouterLink, typeof RouterLinkWithHref, typeof RouterLinkActive, typeof ɵEmptyOutletComponent], never, [typeof RouterOutlet, typeof RouterLink, typeof RouterLinkWithHref, typeof RouterLinkActive, typeof ɵEmptyOutletComponent]>;
+    static ɵinj: ɵngcc0.ɵɵInjectorDef<RouterModule>;
 }
 
 /**
@@ -2474,10 +2510,10 @@ export declare class RouterOutlet implements OnDestroy, OnInit {
     constructor(parentContexts: ChildrenOutletContexts, location: ViewContainerRef, resolver: ComponentFactoryResolver, name: string, changeDetector: ChangeDetectorRef);
     ngOnDestroy(): void;
     ngOnInit(): void;
-    readonly isActivated: boolean;
-    readonly component: Object;
-    readonly activatedRoute: ActivatedRoute;
-    readonly activatedRouteData: Data;
+    get isActivated(): boolean;
+    get component(): Object;
+    get activatedRoute(): ActivatedRoute;
+    get activatedRouteData(): Data;
     /**
      * Called when the `RouteReuseStrategy` instructs to detach the subtree
      */
@@ -2488,6 +2524,11 @@ export declare class RouterOutlet implements OnDestroy, OnInit {
     attach(ref: ComponentRef<any>, activatedRoute: ActivatedRoute): void;
     deactivate(): void;
     activateWith(activatedRoute: ActivatedRoute, resolver: ComponentFactoryResolver | null): void;
+    static ɵfac: ɵngcc0.ɵɵFactoryDef<RouterOutlet>;
+    static ɵdir: ɵngcc0.ɵɵDirectiveDefWithMeta<RouterOutlet, "router-outlet", ["outlet"], {}, {
+    "activateEvents": "activate";
+    "deactivateEvents": "deactivate";
+}, never>;
 }
 
 /**
@@ -2514,6 +2555,8 @@ export declare class RouterPreloader implements OnDestroy {
     ngOnDestroy(): void;
     private processRoutes;
     private preloadConfig;
+    static ɵfac: ɵngcc0.ɵɵFactoryDef<RouterPreloader>;
+    static ɵprov: ɵngcc0.ɵɵInjectableDef<RouterPreloader>;
 }
 
 /**
@@ -2766,7 +2809,7 @@ export declare class UrlSegment {
     parameters: {
         [name: string]: string;
     });
-    readonly parameterMap: ParamMap;
+    get parameterMap(): ParamMap;
     /** @docsNotRequired */
     toString(): string;
 }
@@ -2799,7 +2842,7 @@ export declare class UrlSegmentGroup {
     /** Whether the segment has child segments */
     hasChildren(): boolean;
     /** Number of child segments */
-    readonly numberOfChildren: number;
+    get numberOfChildren(): number;
     /** @docsNotRequired */
     toString(): string;
 }
@@ -2860,7 +2903,7 @@ export declare class UrlTree {
     queryParams: Params;
     /** The fragment of the URL */
     fragment: string | null;
-    readonly queryParamMap: ParamMap;
+    get queryParamMap(): ParamMap;
     /** @docsNotRequired */
     toString(): string;
 }
@@ -2907,6 +2950,8 @@ export declare class ɵangular_packages_router_router_h {
     bootstrapListener(bootstrappedComponentRef: ComponentRef<any>): void;
     private isLegacyEnabled;
     private isLegacyDisabled;
+    static ɵfac: ɵngcc0.ɵɵFactoryDef<ɵangular_packages_router_router_h>;
+    static ɵprov: ɵngcc0.ɵɵInjectableDef<ɵangular_packages_router_router_h>;
 }
 
 export declare function ɵangular_packages_router_router_i(r: ɵangular_packages_router_router_h): () => Promise<any>;
@@ -2936,7 +2981,7 @@ export declare function ɵangular_packages_router_router_k(): (typeof ɵangular_
 
 export declare class ɵangular_packages_router_router_m<T> {
     constructor(root: ɵangular_packages_router_router_n<T>);
-    readonly root: T;
+    get root(): T;
 }
 
 export declare class ɵangular_packages_router_router_n<T> {
@@ -2966,6 +3011,8 @@ export declare class ɵangular_packages_router_router_o implements OnDestroy {
     private consumeScrollEvents;
     private scheduleScrollEvent;
     ngOnDestroy(): void;
+    static ɵfac: ɵngcc0.ɵɵFactoryDef<ɵangular_packages_router_router_o>;
+    static ɵdir: ɵngcc0.ɵɵDirectiveDefWithMeta<ɵangular_packages_router_router_o, never, never, {}, {}, never>;
 }
 
 
@@ -2979,6 +3026,8 @@ export declare class ɵangular_packages_router_router_o implements OnDestroy {
  * to this `EmptyOutletComponent`.
  */
 declare class ɵEmptyOutletComponent {
+    static ɵfac: ɵngcc0.ɵɵFactoryDef<ɵEmptyOutletComponent>;
+    static ɵcmp: ɵngcc0.ɵɵComponentDefWithMeta<ɵEmptyOutletComponent, "ng-component", never, {}, {}, never>;
 }
 export { ɵEmptyOutletComponent }
 export { ɵEmptyOutletComponent as ɵangular_packages_router_router_l }
@@ -2991,3 +3040,5 @@ export declare function ɵflatten<T>(arr: T[][]): T[];
 export declare const ɵROUTER_PROVIDERS: Provider[];
 
 export { }
+
+//# sourceMappingURL=router.d.ts.map

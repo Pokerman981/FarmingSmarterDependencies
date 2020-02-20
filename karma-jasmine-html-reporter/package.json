@@ -1,37 +1,32 @@
 {
-  "_args": [
-    [
-      "karma-jasmine-html-reporter@1.5.1",
-      "E:\\Development\\FarmingSmarterPWA"
-    ]
-  ],
-  "_development": true,
-  "_from": "karma-jasmine-html-reporter@1.5.1",
-  "_id": "karma-jasmine-html-reporter@1.5.1",
+  "_from": "karma-jasmine-html-reporter@^1.5.2",
+  "_id": "karma-jasmine-html-reporter@1.5.2",
   "_inBundle": false,
-  "_integrity": "sha512-LlLqsoGyxT1981z46BRaC1SaY4pTo4EHCA/qZvJEMQXzTtGMyIlmwtxny6FiLO/N/OmZh69eaoNzvBkbHVVFQA==",
+  "_integrity": "sha512-ILBPsXqQ3eomq+oaQsM311/jxsypw5/d0LnZXj26XkfThwq7jZ55A2CFSKJVA5VekbbOGvMyv7d3juZj0SeTxA==",
   "_location": "/karma-jasmine-html-reporter",
   "_phantomChildren": {},
   "_requested": {
-    "type": "version",
+    "type": "range",
     "registry": true,
-    "raw": "karma-jasmine-html-reporter@1.5.1",
+    "raw": "karma-jasmine-html-reporter@^1.5.2",
     "name": "karma-jasmine-html-reporter",
     "escapedName": "karma-jasmine-html-reporter",
-    "rawSpec": "1.5.1",
+    "rawSpec": "^1.5.2",
     "saveSpec": null,
-    "fetchSpec": "1.5.1"
+    "fetchSpec": "^1.5.2"
   },
   "_requiredBy": [
     "#DEV:/"
   ],
-  "_resolved": "https://registry.npmjs.org/karma-jasmine-html-reporter/-/karma-jasmine-html-reporter-1.5.1.tgz",
-  "_spec": "1.5.1",
+  "_resolved": "https://registry.npmjs.org/karma-jasmine-html-reporter/-/karma-jasmine-html-reporter-1.5.2.tgz",
+  "_shasum": "a846b703dbe5c8d803481e68636eb93346dc5966",
+  "_spec": "karma-jasmine-html-reporter@^1.5.2",
   "_where": "E:\\Development\\FarmingSmarterPWA",
   "author": "",
   "bugs": {
     "url": "https://github.com/dfederm/karma-jasmine-html-reporter/issues"
   },
+  "bundleDependencies": false,
   "contributors": [
     {
       "name": "David Federman",
@@ -54,6 +49,7 @@
       "url": "https://github.com/footballencarta"
     }
   ],
+  "deprecated": false,
   "description": "A Karma plugin. Dynamically displays tests results at debug.html page",
   "devDependencies": {
     "chalk": "*",
@@ -79,5 +75,5 @@
   "scripts": {
     "build": "node build/build.js"
   },
-  "version": "1.5.1"
+  "version": "1.5.2"
 }

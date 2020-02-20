@@ -1,6 +1,6 @@
 /**
- * @license Angular v8.2.14
- * (c) 2010-2019 Google LLC. https://angular.io/
+ * @license Angular v9.0.2
+ * (c) 2010-2020 Google LLC. https://angular.io/
  * License: MIT
  */
 
@@ -8,7 +8,7 @@
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('rxjs'), require('rxjs/operators')) :
     typeof define === 'function' && define.amd ? define('@angular/service-worker', ['exports', '@angular/common', '@angular/core', 'rxjs', 'rxjs/operators'], factory) :
     (global = global || self, factory((global.ng = global.ng || {}, global.ng.serviceWorker = {}), global.ng.common, global.ng.core, global.rxjs, global.rxjs.operators));
-}(this, function (exports, common, core, rxjs, operators) { 'use strict';
+}(this, (function (exports, common, core, rxjs, operators) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -55,8 +55,10 @@
         for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
             t[p] = s[p];
         if (s != null && typeof Object.getOwnPropertySymbols === "function")
-            for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
-                t[p[i]] = s[p[i]];
+            for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+                if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                    t[p[i]] = s[p[i]];
+            }
         return t;
     }
 
@@ -149,6 +151,14 @@
             ar = ar.concat(__read(arguments[i]));
         return ar;
     }
+
+    function __spreadArrays() {
+        for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+        for (var r = Array(s), k = 0, i = 0; i < il; i++)
+            for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+                r[k] = a[j];
+        return r;
+    };
 
     function __await(v) {
         return this instanceof __await ? (this.v = v, this) : new __await(v);
@@ -631,16 +641,16 @@
      * Generated bundle index. Do not edit.
      */
 
+    exports.ServiceWorkerModule = ServiceWorkerModule;
+    exports.SwPush = SwPush;
+    exports.SwRegistrationOptions = SwRegistrationOptions;
+    exports.SwUpdate = SwUpdate;
     exports.ɵangular_packages_service_worker_service_worker_a = NgswCommChannel;
     exports.ɵangular_packages_service_worker_service_worker_b = SCRIPT;
     exports.ɵangular_packages_service_worker_service_worker_c = ngswAppInitializer;
     exports.ɵangular_packages_service_worker_service_worker_d = ngswCommChannelFactory;
-    exports.ServiceWorkerModule = ServiceWorkerModule;
-    exports.SwRegistrationOptions = SwRegistrationOptions;
-    exports.SwPush = SwPush;
-    exports.SwUpdate = SwUpdate;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-}));
+})));
 //# sourceMappingURL=service-worker.umd.js.map

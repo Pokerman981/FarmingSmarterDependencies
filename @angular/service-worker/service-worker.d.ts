@@ -1,6 +1,6 @@
 /**
- * @license Angular v8.2.14
- * (c) 2010-2019 Google LLC. https://angular.io/
+ * @license Angular v9.0.2
+ * (c) 2010-2020 Google LLC. https://angular.io/
  * License: MIT
  */
 
@@ -12,6 +12,7 @@ import { Observable } from 'rxjs';
 /**
  * @publicApi
  */
+import * as ɵngcc0 from '@angular/core';
 export declare class ServiceWorkerModule {
     /**
      * Register the given Angular Service Worker script.
@@ -20,6 +21,8 @@ export declare class ServiceWorkerModule {
      * workers are not supported by the browser, and the service worker will not be registered.
      */
     static register(script: string, opts?: SwRegistrationOptions): ModuleWithProviders<ServiceWorkerModule>;
+    static ɵmod: ɵngcc0.ɵɵNgModuleDefWithMeta<ServiceWorkerModule, never, never, never>;
+    static ɵinj: ɵngcc0.ɵɵInjectorDef<ServiceWorkerModule>;
 }
 
 /**
@@ -126,7 +129,7 @@ export declare class SwPush {
      * True if the Service Worker is enabled (supported by the browser and enabled via
      * `ServiceWorkerModule`).
      */
-    readonly isEnabled: boolean;
+    get isEnabled(): boolean;
     private pushManager;
     private subscriptionChanges;
     constructor(sw: ɵangular_packages_service_worker_service_worker_a);
@@ -148,6 +151,8 @@ export declare class SwPush {
      */
     unsubscribe(): Promise<void>;
     private decodeBase64;
+    static ɵfac: ɵngcc0.ɵɵFactoryDef<SwPush>;
+    static ɵprov: ɵngcc0.ɵɵInjectableDef<SwPush>;
 }
 
 /**
@@ -224,10 +229,12 @@ export declare class SwUpdate {
      * True if the Service Worker is enabled (supported by the browser and enabled via
      * `ServiceWorkerModule`).
      */
-    readonly isEnabled: boolean;
+    get isEnabled(): boolean;
     constructor(sw: ɵangular_packages_service_worker_service_worker_a);
     checkForUpdate(): Promise<void>;
     activateUpdate(): Promise<void>;
+    static ɵfac: ɵngcc0.ɵɵFactoryDef<SwUpdate>;
+    static ɵprov: ɵngcc0.ɵɵInjectableDef<SwUpdate>;
 }
 
 declare interface TypedEvent {
@@ -283,7 +290,7 @@ export declare class ɵangular_packages_service_worker_service_worker_a {
     eventsOfType<T extends TypedEvent>(type: T['type']): Observable<T>;
     nextEventOfType<T extends TypedEvent>(type: T['type']): Observable<T>;
     waitForStatus(nonce: number): Promise<void>;
-    readonly isEnabled: boolean;
+    get isEnabled(): boolean;
 }
 
 export declare const ɵangular_packages_service_worker_service_worker_b: InjectionToken<string>;
@@ -293,3 +300,5 @@ export declare function ɵangular_packages_service_worker_service_worker_c(injec
 export declare function ɵangular_packages_service_worker_service_worker_d(opts: SwRegistrationOptions, platformId: string): ɵangular_packages_service_worker_service_worker_a;
 
 export { }
+
+//# sourceMappingURL=service-worker.d.ts.map

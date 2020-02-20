@@ -1,38 +1,33 @@
 {
-  "_args": [
-    [
-      "@types/jasmine@3.3.16",
-      "E:\\Development\\FarmingSmarterPWA"
-    ]
-  ],
-  "_development": true,
-  "_from": "@types/jasmine@3.3.16",
-  "_id": "@types/jasmine@3.3.16",
+  "_from": "@types/jasmine@~3.5.5",
+  "_id": "@types/jasmine@3.5.5",
   "_inBundle": false,
-  "_integrity": "sha512-Nveep4zKGby8uIvG2AEUyYOwZS8uVeHK9TgbuWYSawUDDdIgfhCKz28QzamTo//Jk7Ztt9PO3f+vzlB6a4GV1Q==",
+  "_integrity": "sha512-LlhwGivHkUV8ehNmaXjGGXopLm91G9ORIRcjw7Ya47jVAIGudewFZM2PdPXBvueZfRWwYzLt083wiPfKRXrSlg==",
   "_location": "/@types/jasmine",
   "_phantomChildren": {},
   "_requested": {
-    "type": "version",
+    "type": "range",
     "registry": true,
-    "raw": "@types/jasmine@3.3.16",
+    "raw": "@types/jasmine@~3.5.5",
     "name": "@types/jasmine",
     "escapedName": "@types%2fjasmine",
     "scope": "@types",
-    "rawSpec": "3.3.16",
+    "rawSpec": "~3.5.5",
     "saveSpec": null,
-    "fetchSpec": "3.3.16"
+    "fetchSpec": "~3.5.5"
   },
   "_requiredBy": [
     "#DEV:/",
     "/@types/jasminewd2"
   ],
-  "_resolved": "https://registry.npmjs.org/@types/jasmine/-/jasmine-3.3.16.tgz",
-  "_spec": "3.3.16",
+  "_resolved": "https://registry.npmjs.org/@types/jasmine/-/jasmine-3.5.5.tgz",
+  "_shasum": "3cad028470cf36ea24771078ec7ef86939af0d48",
+  "_spec": "@types/jasmine@~3.5.5",
   "_where": "E:\\Development\\FarmingSmarterPWA",
   "bugs": {
     "url": "https://github.com/DefinitelyTyped/DefinitelyTyped/issues"
   },
+  "bundleDependencies": false,
   "contributors": [
     {
       "name": "Boris Yankov",
@@ -75,19 +70,28 @@
       "url": "https://github.com/fdim"
     },
     {
-      "name": "Peter Safranek",
-      "url": "https://github.com/pe8ter"
-    },
-    {
       "name": "Moshe Kolodny",
       "url": "https://github.com/kolodny"
     },
     {
       "name": "Stephen Farrar",
       "url": "https://github.com/stephenfarrar"
+    },
+    {
+      "name": "Mochamad Arfin",
+      "url": "https://github.com/ndunks"
+    },
+    {
+      "name": "Alex Povar",
+      "url": "https://github.com/zvirja"
+    },
+    {
+      "name": "Dominik Ehrenberg",
+      "url": "https://github.com/djungowski"
     }
   ],
   "dependencies": {},
+  "deprecated": false,
   "description": "TypeScript definitions for Jasmine",
   "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped#readme",
   "license": "MIT",
@@ -100,8 +104,8 @@
   },
   "scripts": {},
   "typeScriptVersion": "2.8",
-  "types": "index",
-  "typesPublisherContentHash": "ecd3a4f0d5de8333891f5227cadd7654c29918e72fa9c83f4d578cb30ff751e9",
+  "types": "index.d.ts",
+  "typesPublisherContentHash": "3f2e3bbcfef7814c3554bdc550868844bda17476f46c9d1dd0027462b38caa43",
   "typesVersions": {
     ">=3.1.0-0": {
       "*": [
@@ -109,5 +113,5 @@
       ]
     }
   },
-  "version": "3.3.16"
+  "version": "3.5.5"
 }

@@ -1,14 +1,15 @@
 /**
- * @license Angular v8.2.14
- * (c) 2010-2019 Google LLC. https://angular.io/
+ * @license Angular v9.0.2
+ * (c) 2010-2020 Google LLC. https://angular.io/
  * License: MIT
  */
 
-import { NoopAnimationPlayer, ɵAnimationGroupPlayer, ɵPRE_STYLE, AUTO_STYLE, sequence, style } from '@angular/animations';
+import { ɵAnimationGroupPlayer, NoopAnimationPlayer, AUTO_STYLE, ɵPRE_STYLE, sequence, style } from '@angular/animations';
 import { Injectable } from '@angular/core';
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: packages/animations/browser/src/render/shared.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
@@ -365,6 +366,7 @@ function hypenatePropsObject(object) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: packages/animations/browser/src/render/animation_driver.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
@@ -487,6 +489,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: packages/animations/browser/src/util.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
@@ -519,7 +522,7 @@ function resolveTimingValue(value) {
     if (typeof value == 'number')
         return value;
     /** @type {?} */
-    const matches = ((/** @type {?} */ (value))).match(/^(-?[\.\d]+)(m?s)/);
+    const matches = value.match(/^(-?[\.\d]+)(m?s)/);
     if (!matches || matches.length < 2)
         return 0;
     return _convertTimeValueToMS(parseFloat(matches[1]), matches[2]);
@@ -583,7 +586,7 @@ function parseTimeExpression(exp, errors, allowNegativeValues) {
         }
     }
     else {
-        duration = (/** @type {?} */ (exp));
+        duration = exp;
     }
     if (!allowNegativeValues) {
         /** @type {?} */
@@ -793,10 +796,8 @@ function extractStyleParams(value) {
     let params = [];
     if (typeof value === 'string') {
         /** @type {?} */
-        const val = value.toString();
-        /** @type {?} */
         let match;
-        while (match = PARAM_REGEX.exec(val)) {
+        while (match = PARAM_REGEX.exec(value)) {
             params.push((/** @type {?} */ (match[1])));
         }
         PARAM_REGEX.lastIndex = 0;
@@ -988,6 +989,7 @@ function computeStyle(element, prop) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: packages/animations/browser/src/dsl/animation_transition_expr.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
@@ -1008,9 +1010,7 @@ function parseTransitionExpr(transitionValue, errors) {
     /** @type {?} */
     const expressions = [];
     if (typeof transitionValue == 'string') {
-        ((/** @type {?} */ (transitionValue)))
-            .split(/\s*,\s*/)
-            .forEach((/**
+        transitionValue.split(/\s*,\s*/).forEach((/**
          * @param {?} str
          * @return {?}
          */
@@ -1035,7 +1035,7 @@ function parseInnerTransitionStr(eventStr, expressions, errors) {
             expressions.push(result);
             return;
         }
-        eventStr = (/** @type {?} */ (result));
+        eventStr = result;
     }
     /** @type {?} */
     const match = eventStr.match(/^(\*|[-\w]+)\s*(<?[=-]>)\s*(\*|[-\w]+)$/);
@@ -1126,6 +1126,7 @@ function makeLambdaFromStates(lhs, rhs) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: packages/animations/browser/src/dsl/animation_ast_builder.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
@@ -1454,14 +1455,14 @@ class AnimationAstBuilderVisitor {
             styleTuple => {
                 if (typeof styleTuple == 'string') {
                     if (styleTuple == AUTO_STYLE) {
-                        styles.push((/** @type {?} */ (styleTuple)));
+                        styles.push(styleTuple);
                     }
                     else {
                         context.errors.push(`The provided style string value ${styleTuple} is not allowed.`);
                     }
                 }
                 else {
-                    styles.push((/** @type {?} */ (styleTuple)));
+                    styles.push(styleTuple);
                 }
             }));
         }
@@ -1839,7 +1840,7 @@ function consumeOffset(styles) {
     }
     else if (isObject(styles) && styles.hasOwnProperty('offset')) {
         /** @type {?} */
-        const obj = (/** @type {?} */ (styles));
+        const obj = styles;
         offset = parseFloat((/** @type {?} */ (obj['offset'])));
         delete obj['offset'];
     }
@@ -1865,8 +1866,8 @@ function constructTimingAst(value, errors) {
     }
     else if (typeof value == 'number') {
         /** @type {?} */
-        const duration = resolveTiming((/** @type {?} */ (value)), errors).duration;
-        return makeTimingAst((/** @type {?} */ (duration)), 0, '');
+        const duration = resolveTiming(value, errors).duration;
+        return makeTimingAst(duration, 0, '');
     }
     /** @type {?} */
     const strValue = (/** @type {?} */ (value));
@@ -1914,6 +1915,7 @@ function makeTimingAst(duration, delay, easing) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: packages/animations/browser/src/dsl/animation_timeline_instruction.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
@@ -1968,6 +1970,7 @@ function createTimelineInstruction(element, keyframes, preStyleProps, postStyleP
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: packages/animations/browser/src/dsl/element_instruction_map.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class ElementInstructionMap {
@@ -2022,6 +2025,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: packages/animations/browser/src/dsl/animation_timeline_builder.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
@@ -3330,6 +3334,7 @@ function flattenStyles(input, allStyles) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: packages/animations/browser/src/dsl/animation.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class Animation {
@@ -3393,6 +3398,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: packages/animations/browser/src/dsl/style_normalization/animation_style_normalizer.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
@@ -3450,6 +3456,7 @@ class NoopAnimationStyleNormalizer {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: packages/animations/browser/src/dsl/style_normalization/web_animations_style_normalizer.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class WebAnimationsStyleNormalizer extends AnimationStyleNormalizer {
@@ -3512,6 +3519,7 @@ function makeBooleanMap(keys) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: packages/animations/browser/src/dsl/animation_transition_instruction.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
@@ -3583,6 +3591,7 @@ function createTransitionInstruction(element, triggerName, fromState, toState, i
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: packages/animations/browser/src/dsl/animation_transition_factory.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
@@ -3658,7 +3667,7 @@ class AnimationTransitionFactory {
         /** @type {?} */
         const isRemoval = nextState === 'void';
         /** @type {?} */
-        const animationOptions = { params: Object.assign({}, transitionAnimationParams, nextAnimationParams) };
+        const animationOptions = { params: Object.assign(Object.assign({}, transitionAnimationParams), nextAnimationParams) };
         /** @type {?} */
         const timelines = skipAstBuild ? [] : buildAnimationTimelines(driver, element, this.ast.animation, enterClassName, leaveClassName, currentStateStyles, nextStateStyles, animationOptions, subInstructions, errors);
         /** @type {?} */
@@ -3800,6 +3809,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: packages/animations/browser/src/dsl/animation_trigger.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
@@ -3931,6 +3941,7 @@ function balanceProperties(obj, key1, key2) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: packages/animations/browser/src/render/timeline_animation_engine.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
@@ -4172,6 +4183,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: packages/animations/browser/src/render/transition_animation_engine.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
@@ -4582,14 +4594,15 @@ class AnimationTransitionNamespace {
      * @private
      * @param {?} rootElement
      * @param {?} context
-     * @param {?=} animate
      * @return {?}
      */
-    _signalRemovalForInnerTriggers(rootElement, context, animate = false) {
+    _signalRemovalForInnerTriggers(rootElement, context) {
+        /** @type {?} */
+        const elements = this._engine.driver.query(rootElement, NG_TRIGGER_SELECTOR, true);
         // emulate a leave animation for all inner nodes within this node.
         // If there are no animations found for any of the nodes then clear the cache
         // for the element.
-        this._engine.driver.query(rootElement, NG_TRIGGER_SELECTOR, true).forEach((/**
+        elements.forEach((/**
          * @param {?} elm
          * @return {?}
          */
@@ -4611,6 +4624,16 @@ class AnimationTransitionNamespace {
                 this.clearElementCache(elm);
             }
         }));
+        // If the child elements were removed along with the parent, their animations might not
+        // have completed. Clear all the elements from the cache so we don't end up with a memory leak.
+        this._engine.afterFlushAnimationsDone((/**
+         * @return {?}
+         */
+        () => elements.forEach((/**
+         * @param {?} elm
+         * @return {?}
+         */
+        elm => this.clearElementCache(elm)))));
     }
     /**
      * @param {?} element
@@ -4707,7 +4730,7 @@ class AnimationTransitionNamespace {
         /** @type {?} */
         const engine = this._engine;
         if (element.childElementCount) {
-            this._signalRemovalForInnerTriggers(element, context, true);
+            this._signalRemovalForInnerTriggers(element, context);
         }
         // this means that a * => VOID animation was detected and kicked off
         if (this.triggerLeaveAnimation(element, context, true))
@@ -4750,14 +4773,18 @@ class AnimationTransitionNamespace {
             engine.markElementAsRemoved(this.id, element, false, context);
         }
         else {
-            // we do this after the flush has occurred such
-            // that the callbacks can be fired
-            engine.afterFlush((/**
-             * @return {?}
-             */
-            () => this.clearElementCache(element)));
-            engine.destroyInnerAnimations(element);
-            engine._onRemovalComplete(element, context);
+            /** @type {?} */
+            const removalFlag = element[REMOVAL_FLAG];
+            if (!removalFlag || removalFlag === NULL_REMOVAL_STATE) {
+                // we do this after the flush has occurred such
+                // that the callbacks can be fired
+                engine.afterFlush((/**
+                 * @return {?}
+                 */
+                () => this.clearElementCache(element)));
+                engine.destroyInnerAnimations(element);
+                engine._onRemovalComplete(element, context);
+            }
         }
     }
     /**
@@ -5855,7 +5882,7 @@ class TransitionAnimationEngine {
             const post = postStylesMap.get(node);
             /** @type {?} */
             const pre = preStylesMap.get(node);
-            postStylesMap.set(node, (/** @type {?} */ (Object.assign({}, post, pre))));
+            postStylesMap.set(node, (/** @type {?} */ (Object.assign(Object.assign({}, post), pre))));
         }));
         /** @type {?} */
         const rootPlayers = [];
@@ -6156,7 +6183,7 @@ class TransitionAnimationEngine {
              */
             player => {
                 /** @type {?} */
-                const realPlayer = (/** @type {?} */ (player.getRealPlayer()));
+                const realPlayer = (/** @type {?} */ (((/** @type {?} */ (player))).getRealPlayer()));
                 if (realPlayer.beforeDestroy) {
                     realPlayer.beforeDestroy();
                 }
@@ -6847,7 +6874,7 @@ function _flattenGroupPlayersRecur(players, finalPlayers) {
             _flattenGroupPlayersRecur(player.players, finalPlayers);
         }
         else {
-            finalPlayers.push((/** @type {?} */ (player)));
+            finalPlayers.push(player);
         }
     }
 }
@@ -6900,6 +6927,7 @@ function replacePostStylesAsPre(element, allPreStyleElements, allPostStyleElemen
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: packages/animations/browser/src/render/animation_engine_next.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class AnimationEngine {
@@ -7081,6 +7109,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: packages/animations/browser/src/render/special_cased_styles.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
@@ -7250,6 +7279,7 @@ function isNonAnimatableStyle(prop) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: packages/animations/browser/src/render/css_keyframes/element_animation_style_handler.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
@@ -7557,6 +7587,7 @@ function countChars(value, char) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: packages/animations/browser/src/render/css_keyframes/css_keyframes_player.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
@@ -7851,6 +7882,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: packages/animations/browser/src/render/css_keyframes/direct_style_player.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class DirectStylePlayer extends NoopAnimationPlayer {
@@ -7942,6 +7974,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: packages/animations/browser/src/render/css_keyframes/css_keyframes_driver.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
@@ -8173,6 +8206,7 @@ function removeElement(node) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: packages/animations/browser/src/render/web_animations/web_animations_player.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class WebAnimationsPlayer {
@@ -8489,6 +8523,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: packages/animations/browser/src/render/web_animations/web_animations_driver.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class WebAnimationsDriver {
@@ -8624,21 +8659,25 @@ function getElementAnimateFn() {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: packages/animations/browser/src/private_export.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: packages/animations/browser/src/browser.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: packages/animations/browser/public_api.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: packages/animations/browser/index.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
@@ -8646,5 +8685,5 @@ function getElementAnimateFn() {
  * Generated bundle index. Do not edit.
  */
 
-export { SpecialCasedStyles as ɵangular_packages_animations_browser_browser_a, AnimationDriver, AnimationDriver as ɵAnimationDriver, Animation as ɵAnimation, AnimationStyleNormalizer as ɵAnimationStyleNormalizer, NoopAnimationStyleNormalizer as ɵNoopAnimationStyleNormalizer, WebAnimationsStyleNormalizer as ɵWebAnimationsStyleNormalizer, NoopAnimationDriver as ɵNoopAnimationDriver, AnimationEngine as ɵAnimationEngine, CssKeyframesDriver as ɵCssKeyframesDriver, CssKeyframesPlayer as ɵCssKeyframesPlayer, containsElement as ɵcontainsElement, invokeQuery as ɵinvokeQuery, matchesElement as ɵmatchesElement, validateStyleProperty as ɵvalidateStyleProperty, WebAnimationsDriver as ɵWebAnimationsDriver, supportsWebAnimations as ɵsupportsWebAnimations, WebAnimationsPlayer as ɵWebAnimationsPlayer, allowPreviousPlayerStylesMerge as ɵallowPreviousPlayerStylesMerge };
+export { AnimationDriver, Animation as ɵAnimation, AnimationDriver as ɵAnimationDriver, AnimationEngine as ɵAnimationEngine, AnimationStyleNormalizer as ɵAnimationStyleNormalizer, CssKeyframesDriver as ɵCssKeyframesDriver, CssKeyframesPlayer as ɵCssKeyframesPlayer, NoopAnimationDriver as ɵNoopAnimationDriver, NoopAnimationStyleNormalizer as ɵNoopAnimationStyleNormalizer, WebAnimationsDriver as ɵWebAnimationsDriver, WebAnimationsPlayer as ɵWebAnimationsPlayer, WebAnimationsStyleNormalizer as ɵWebAnimationsStyleNormalizer, allowPreviousPlayerStylesMerge as ɵallowPreviousPlayerStylesMerge, SpecialCasedStyles as ɵangular_packages_animations_browser_browser_a, containsElement as ɵcontainsElement, invokeQuery as ɵinvokeQuery, matchesElement as ɵmatchesElement, supportsWebAnimations as ɵsupportsWebAnimations, validateStyleProperty as ɵvalidateStyleProperty };
 //# sourceMappingURL=browser.js.map

@@ -13,25 +13,14 @@ const utils_1 = require("./utils");
 const autoprefixer = require('autoprefixer');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const postcssImports = require('postcss-import');
-/**
- * Enumerate loaders and their dependencies from this file to let the dependency validator
- * know they are used.
- *
- * require('style-loader')
- * require('postcss-loader')
- * require('stylus')
- * require('stylus-loader')
- * require('less')
- * require('less-loader')
- * require('node-sass')
- * require('sass-loader')
- */
 // tslint:disable-next-line:no-big-function
 function getStylesConfig(wco) {
     const { root, buildOptions } = wco;
     const entryPoints = {};
     const globalStylePaths = [];
-    const extraPlugins = [];
+    const extraPlugins = [
+        new webpack_1.AnyComponentStyleBudgetChecker(buildOptions.budgets),
+    ];
     const cssSourceMap = buildOptions.sourceMap.styles;
     // Determine hashing format.
     const hashFormat = utils_1.getOutputHashFormat(buildOptions.outputHashing);
@@ -59,6 +48,7 @@ function getStylesConfig(wco) {
                 loader,
                 rebaseRootRelative: buildOptions.rebaseRootRelativeCssUrls,
                 filename: `[name]${hashFormat.file}.[ext]`,
+                emitFile: buildOptions.platform !== 'server',
             }),
             autoprefixer(),
         ];
@@ -99,18 +89,12 @@ function getStylesConfig(wco) {
         }
     }
     let sassImplementation;
-    let fiber;
     try {
         // tslint:disable-next-line:no-implicit-dependencies
         sassImplementation = require('node-sass');
     }
     catch (_a) {
         sassImplementation = require('sass');
-        try {
-            // tslint:disable-next-line:no-implicit-dependencies
-            fiber = require('fibers');
-        }
-        catch (_b) { }
     }
     // set base rules to derive final rules from
     const baseRules = [
@@ -119,14 +103,15 @@ function getStylesConfig(wco) {
             test: /\.scss$|\.sass$/,
             use: [
                 {
-                    loader: 'sass-loader',
+                    loader: require.resolve('sass-loader'),
                     options: {
                         implementation: sassImplementation,
-                        fiber,
                         sourceMap: cssSourceMap,
-                        // bootstrap-sass requires a minimum precision of 8
-                        precision: 8,
-                        includePaths,
+                        sassOptions: {
+                            // bootstrap-sass requires a minimum precision of 8
+                            precision: 8,
+                            includePaths,
+                        },
                     },
                 },
             ],
@@ -135,7 +120,7 @@ function getStylesConfig(wco) {
             test: /\.less$/,
             use: [
                 {
-                    loader: 'less-loader',
+                    loader: require.resolve('less-loader'),
                     options: {
                         sourceMap: cssSourceMap,
                         javascriptEnabled: true,
@@ -148,7 +133,7 @@ function getStylesConfig(wco) {
             test: /\.styl$/,
             use: [
                 {
-                    loader: 'stylus-loader',
+                    loader: require.resolve('stylus-loader'),
                     options: {
                         sourceMap: cssSourceMap,
                         paths: includePaths,
@@ -162,9 +147,9 @@ function getStylesConfig(wco) {
         exclude: globalStylePaths,
         test,
         use: [
-            { loader: 'raw-loader' },
+            { loader: require.resolve('raw-loader') },
             {
-                loader: 'postcss-loader',
+                loader: require.resolve('postcss-loader'),
                 options: {
                     ident: 'embedded',
                     plugins: postcssPluginCreator,
@@ -187,10 +172,10 @@ function getStylesConfig(wco) {
                 include: globalStylePaths,
                 test,
                 use: [
-                    buildOptions.extractCss ? MiniCssExtractPlugin.loader : 'style-loader',
+                    buildOptions.extractCss ? MiniCssExtractPlugin.loader : require.resolve('style-loader'),
                     webpack_1.RawCssLoader,
                     {
-                        loader: 'postcss-loader',
+                        loader: require.resolve('postcss-loader'),
                         options: {
                             ident: buildOptions.extractCss ? 'extracted' : 'embedded',
                             plugins: postcssPluginCreator,

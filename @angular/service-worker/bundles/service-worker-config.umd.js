@@ -1,6 +1,6 @@
 /**
- * @license Angular v8.2.14
- * (c) 2010-2019 Google LLC. https://angular.io/
+ * @license Angular v9.0.2
+ * (c) 2010-2020 Google LLC. https://angular.io/
  * License: MIT
  */
 
@@ -8,7 +8,7 @@
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
     typeof define === 'function' && define.amd ? define('@angular/service-worker/config', ['exports'], factory) :
     (global = global || self, factory((global.ng = global.ng || {}, global.ng.serviceWorker = global.ng.serviceWorker || {}, global.ng.serviceWorker.config = {})));
-}(this, function (exports) { 'use strict';
+}(this, (function (exports) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -55,8 +55,10 @@
         for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
             t[p] = s[p];
         if (s != null && typeof Object.getOwnPropertySymbols === "function")
-            for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
-                t[p[i]] = s[p[i]];
+            for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+                if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                    t[p[i]] = s[p[i]];
+            }
         return t;
     }
 
@@ -149,6 +151,14 @@
             ar = ar.concat(__read(arguments[i]));
         return ar;
     }
+
+    function __spreadArrays() {
+        for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+        for (var r = Array(s), k = 0, i = 0; i < il; i++)
+            for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+                r[k] = a[j];
+        return r;
+    };
 
     function __await(v) {
         return this instanceof __await ? (this.v = v, this) : new __await(v);
@@ -343,26 +353,22 @@
                 return __generator(this, function (_a) {
                     seenMap = new Set();
                     return [2 /*return*/, Promise.all((config.assetGroups || []).map(function (group) { return __awaiter(_this, void 0, void 0, function () {
-                            var fileMatcher, versionedMatcher, allFiles, plainFiles, versionedFiles, matchedFiles;
+                            var fileMatcher, allFiles, matchedFiles;
                             var _this = this;
                             return __generator(this, function (_a) {
                                 switch (_a.label) {
                                     case 0:
                                         if (group.resources.versionedFiles) {
-                                            console.warn("Asset-group '" + group.name + "' in 'ngsw-config.json' uses the 'versionedFiles' option.\n" +
-                                                'As of v6 \'versionedFiles\' and \'files\' options have the same behavior. ' +
-                                                'Use \'files\' instead.');
+                                            throw new Error("Asset-group '" + group.name + "' in 'ngsw-config.json' uses the 'versionedFiles' option, " +
+                                                'which is no longer supported. Use \'files\' instead.');
                                         }
                                         fileMatcher = globListToMatcher(group.resources.files || []);
-                                        versionedMatcher = globListToMatcher(group.resources.versionedFiles || []);
                                         return [4 /*yield*/, this.fs.list('/')];
                                     case 1:
                                         allFiles = _a.sent();
-                                        plainFiles = allFiles.filter(fileMatcher).filter(function (file) { return !seenMap.has(file); });
-                                        plainFiles.forEach(function (file) { return seenMap.add(file); });
-                                        versionedFiles = allFiles.filter(versionedMatcher).filter(function (file) { return !seenMap.has(file); });
-                                        versionedFiles.forEach(function (file) { return seenMap.add(file); });
-                                        matchedFiles = __spread(plainFiles, versionedFiles).sort();
+                                        matchedFiles = allFiles.filter(fileMatcher).filter(function (file) { return !seenMap.has(file); }).sort();
+                                        matchedFiles.forEach(function (file) { return seenMap.add(file); });
+                                        // Add the hashes.
                                         return [4 /*yield*/, matchedFiles.reduce(function (previous, file) { return __awaiter(_this, void 0, void 0, function () {
                                                 var hash;
                                                 return __generator(this, function (_a) {
@@ -379,6 +385,7 @@
                                                 });
                                             }); }, Promise.resolve())];
                                     case 2:
+                                        // Add the hashes.
                                         _a.sent();
                                         return [2 /*return*/, {
                                                 name: group.name,
@@ -490,5 +497,5 @@
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-}));
+})));
 //# sourceMappingURL=service-worker-config.umd.js.map

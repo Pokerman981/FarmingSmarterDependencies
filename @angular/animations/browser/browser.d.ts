@@ -1,6 +1,6 @@
 /**
- * @license Angular v8.2.14
- * (c) 2010-2019 Google LLC. https://angular.io/
+ * @license Angular v9.0.2
+ * (c) 2010-2020 Google LLC. https://angular.io/
  * License: MIT
  */
 
@@ -13,6 +13,7 @@ import { ɵStyleData } from '@angular/animations';
 /**
  * @publicApi
  */
+import * as ɵngcc0 from '@angular/core';
 declare abstract class AnimationDriver {
     static NOOP: AnimationDriver;
     abstract validateStyleProperty(prop: string): boolean;
@@ -132,7 +133,7 @@ export declare class ɵAnimationEngine {
     process(namespaceId: string, element: any, property: string, value: any): void;
     listen(namespaceId: string, element: any, eventName: string, eventPhase: string, callback: (event: any) => any): () => any;
     flush(microtaskId?: number): void;
-    readonly players: AnimationPlayer[];
+    get players(): AnimationPlayer[];
     whenRenderingDone(): Promise<any>;
 }
 
@@ -225,6 +226,8 @@ export declare class ɵNoopAnimationDriver implements AnimationDriver {
     animate(element: any, keyframes: {
         [key: string]: string | number;
     }[], duration: number, delay: number, easing: string, previousPlayers?: any[], scrubberAccessRequested?: boolean): AnimationPlayer;
+    static ɵfac: ɵngcc0.ɵɵFactoryDef<ɵNoopAnimationDriver>;
+    static ɵprov: ɵngcc0.ɵɵInjectableDef<ɵNoopAnimationDriver>;
 }
 
 /**
@@ -298,7 +301,7 @@ export declare class ɵWebAnimationsPlayer implements AnimationPlayer {
     destroy(): void;
     setPosition(p: number): void;
     getPosition(): number;
-    readonly totalTime: number;
+    get totalTime(): number;
     beforeDestroy(): void;
 }
 
@@ -308,3 +311,5 @@ export declare class ɵWebAnimationsStyleNormalizer extends ɵAnimationStyleNorm
 }
 
 export { }
+
+//# sourceMappingURL=browser.d.ts.map

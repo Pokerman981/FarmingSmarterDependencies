@@ -5,13 +5,14 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
+/// <amd-module name="@angular/cdk/schematics/utils/version-agnostic-typescript" />
 /**
  * This is just a type import and won't be generated in the release output.
  *
  * Note that we always need to adjust this type import based on the location of the Typescript
  * dependency that will be shipped with `@schematics/angular`.
  */
-import typescript = require('typescript');
+import typescript = require('@schematics/angular/third_party/github.com/Microsoft/TypeScript/lib/typescript');
 /**
  * This is an agnostic re-export of TypeScript. Depending on the context, this module file will
  * return the TypeScript version that is being shipped within the `@schematics/angular` package,
